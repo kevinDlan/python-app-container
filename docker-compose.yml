@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+    volumes:
+      - db_data:/var/lib/redis
+    restart: always
+  python-app:
+    depends_on:
+      - redis
+    image: python-app
+    ports:
+      - "5000:5000"
+    restart: always
+
+volumes:
+  db_data: {}
